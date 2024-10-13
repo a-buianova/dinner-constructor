@@ -48,13 +48,24 @@ public class Main {
     }
 
     private static void addNewDish() {
-        System.out.println("Введите тип блюда:");
-        String dishType = scanner.nextLine();
-        System.out.println("Введите название блюда:");
-        String dishName = scanner.nextLine();
+        String dishType = readUserInput("Введите тип блюда:");
+        String dishName = readUserInput("Введите название блюда:");
 
         dc.addDish(dishType, dishName);
         System.out.println("Блюдо добавлено: " + dishType + " - " + dishName);
+    }
+
+    private static String readUserInput(String prompt) {
+        System.out.println(prompt);
+        String userInput;
+        while (!(userInput = scanner.nextLine()).isEmpty()) {
+            if (userInput.trim().isEmpty()) {
+                System.out.println("Вы ввели пустую строку. " + prompt);
+                continue;
+            }
+            break;
+        }
+        return userInput;
     }
 
     private static void generateDishCombo() {

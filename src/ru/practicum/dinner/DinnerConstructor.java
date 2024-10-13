@@ -16,10 +16,7 @@ public class DinnerConstructor {
     }
 
     public void addDish(String type, String name) {
-        if (!dishesByType.containsKey(type)) {
-            dishesByType.put(type, new ArrayList<>());
-        }
-        dishesByType.get(type).add(name);
+        dishesByType.computeIfAbsent(type, k -> new ArrayList<>()).add(name);
         System.out.println("Блюдо добавлено: " + name + " в категорию " + type);
     }
 
